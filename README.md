@@ -168,6 +168,34 @@ The generated digest includes:
 - If no competitions appear, confirm that both APIs are reachable and that your account has access to them.
 - If the script returns no results, inspect the logs in the terminal for the source-specific error message.
 
+### Gmail SMTP issue: `SMTPServerDisconnected: Connection unexpectedly closed`
+
+This usually means Gmail closed the connection during authentication or the app is using the wrong credentials.
+
+Common causes:
+
+- the app is using your normal Gmail password instead of a Gmail App Password
+- 2-Step Verification is not enabled on the Google account
+- the Gmail account is blocking less secure sign-in flows or the app password is invalid
+- the SMTP session is being interrupted while Python is authenticating
+
+How to fix it:
+
+1. Enable 2-Step Verification on your Google account.
+2. Go to https://myaccount.google.com/apppasswords
+3. Generate a new App Password for the app.
+4. Use that 16-character password in `GMAIL_APP_PASSWORD` instead of your regular password.
+5. Keep `GMAIL_USER` as your full Gmail address.
+
+Example:
+
+```env
+GMAIL_USER=you@gmail.com
+GMAIL_APP_PASSWORD=abcd efgh ijkl mnop
+```
+
+Important: if you ever pasted a real password into a traceback or log, change it immediately and regenerate the app password if needed.
+
 ## Notes
 
 This project is intentionally simple and script-based. It is best used as a personal automation tool for tracking highly relevant competition opportunities over time.
