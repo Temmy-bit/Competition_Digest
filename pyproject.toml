@@ -1,0 +1,21 @@
+[project]
+name = "competition-digest"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Temmy-bit", email = "ainatemiloluwa6@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "kaggle>=1.6.17",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+]
+
+[project.scripts]
+competition-digest = "competition_digest:main"
+
+[build-system]
+requires = ["uv_build>=0.12.0,<0.13.0"]
+build-backend = "uv_build"
